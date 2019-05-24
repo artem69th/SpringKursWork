@@ -1,0 +1,134 @@
+<html xmlns:background-color="http://www.w3.org/1999/xhtml" xmlns:color="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>KURSACH</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<header>
+
+    <nav class="nav nav-tabs nav-justified">
+        <a class="nav-item nav-link active" href="/">Главная</a>
+        <a class="nav-item nav-link" href="/zakaz">Заказы</a>
+        <a class="nav-item nav-link active" href="/tovar">Товары</a>
+        <a class="nav-item nav-link" href="/sotr">Сотрудники</a>
+        <a class="nav-item nav-link" href="/harakt">Характеристики товаров</a>
+        <a class="nav-item nav-link" href="/user">Пользователи</a>
+    </nav>
+
+</header>
+
+<form style="padding: 10px" method="post"action="addTovar">
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="inputTovarName">Название</label>
+            <input type="text" name="tovarName" class="form-control" id="TovarName" placeholder="Название товара">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputTovarPrice">Цена</label>
+            <input type="number" name="tovarPrice" class="form-control" id="inputTovarPrice" placeholder="Цена на товар">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputHarakteristikiId">Id характеристики товара</label>
+            <input type="number" name="harakteristikiId" class="form-control" id="inputHarakteristikiId" placeholder="Хакактеристика товара">
+        </div>
+    </div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <button type="submit" class="btn btn-primary" >Добавить</button>
+</form>
+<hr>
+
+<!--<div>-->
+<!--    <form method="post"action="addTovar">-->
+<!--        <input type="text" name="tovarName" placeholder="Введите название товара">-->
+<!--        <input type="text" name="tovarPrice" placeholder="Введите цену товара">-->
+<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />-->
+<!--        <button type="submit">Добавить</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+<form style="padding: 10px" method="post"action="deleteTovar">
+    <div class="form-row">
+        <div class="form-group col-md-1">
+            <label for="inputTovarId">Id товара</label>
+            <input type="number" name="tovarId" class="form-control" id="TovarId" placeholder="Id товара">
+        </div>
+
+    </div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <button type="submit" class="btn btn-primary" >Удалить</button>
+</form>
+
+<hr>
+
+<!--<div>-->
+<!--    <form method="post" action="deleteTovar">-->
+<!--        <input type="number" name="tovarId" placeholder="Введите id">-->
+<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />-->
+<!--        <button type="submit">Удалить</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+<form style="padding: 10px" method="post"action="updateTovar">
+    <div class="form-row">
+        <div class="form-group col-md-1">
+            <label for="inputTovarId">Id</label>
+            <input type="text" name="tovarId" class="form-control" id="TovarId" placeholder="Id товара">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputTovarName">Название</label>
+            <input type="text" name="tovarName" class="form-control" id="TovarName" placeholder="Название товара">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputTovarPrice">Цена</label>
+            <input type="text" name="tovarPrice" class="form-control" id="inputTovarPrice" placeholder="Цена на товар">
+        </div>
+    </div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <button type="submit" class="btn btn-primary" >Обновить</button>
+</form>
+
+<hr>
+
+<!--<div>-->
+<!--    <form method="post" action="updateTovar">-->
+<!--        <input type="number" name="tovarId" placeholder="Введите id">-->
+<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />-->
+<!--        <input type="text" name="tovarName" placeholder="Введите название товара">-->
+<!--        <input type="text" name="tovarPrice" placeholder="Введите цену товара">-->
+<!--        <button type="submit">Обновить</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+
+<div><b>Список товаров</b></div>
+<div style="padding: 10px">
+    <table class="table" >
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Название</th>
+            <th scope="col">Цена</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#tovars}}
+            <div>
+                <tr>
+                    <td>{{tovarId}}</td>
+                    <td>{{tovarName}}</td>
+                    <td>{{tovarPrice}}</td>
+                </tr>
+            </div>
+        {{/tovars}}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
